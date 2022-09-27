@@ -7,11 +7,12 @@ from sqlalchemy import (
     Integer,
     orm,
     Table,
-    Enum,
+    Enum, Boolean,
 )
 from todo_python import domain
 
 metadata = MetaData()
+
 
 def get_database_uri() -> str:
     host = os.environ.get("POSTGRES_HOST", "agenda-db")
@@ -33,7 +34,7 @@ todo_table = Table(
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("title", String, nullable=False),
     Column("status", Enum(domain.TodoStatus), nullable=False),
-    Column("is_deleted", String, nullable=True, default=False),
+    Column("is_deleted", Boolean, nullable=True, default=False),
 )
 
 

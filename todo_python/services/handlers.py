@@ -7,3 +7,18 @@ def create_todo(uow: UnitOfWork, task: str) -> domain.Todo:
         todo = domain.Todo(task)
         uow.todos.save(todo)
         uow.commit()
+    return todo
+
+
+def complete_todo(uow, todo_id: int):
+    with uow:
+        todo = uow.todos.get(todo_id)
+        todo.complete()
+        uow.commit()
+
+
+def delete_todo(uow, todo_id: int):
+    with uow:
+        todo = uow.todos.get(todo_id)
+        todo.delete()
+        uow.commit()

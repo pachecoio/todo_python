@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import enum
 
+
 class TodoStatus(enum.Enum):
     PENDING = "PENDING"
     COMPLETED = "COMPLETED"
@@ -14,6 +15,7 @@ class TodoError(Exception):
 @dataclass
 class Todo:
     title: str
+    id: int = None
     status: TodoStatus = TodoStatus.PENDING
     is_deleted: bool = False
 
