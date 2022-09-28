@@ -15,8 +15,9 @@ def todo_id(session):
 
 def test_create_todo(session_factory, session):
     uow = UnitOfWork(session_factory)
-    handlers.create_todo(uow, "Skate 1h")
+    todo = handlers.create_todo(uow, "Skate 1h")
 
+    assert todo.title
     todos = uow.todos.filter()
     assert todos.count() == 1
 

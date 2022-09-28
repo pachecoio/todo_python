@@ -11,6 +11,7 @@ class UnitOfWork:
         self.todos = TodoRepository(self.session)
 
     def __exit__(self, *args):
+        self.session.expunge_all()
         self.session.close()
 
     def commit(self):
